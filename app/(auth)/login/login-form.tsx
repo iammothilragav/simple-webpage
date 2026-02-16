@@ -1,7 +1,7 @@
 "use client";
-import { Logo } from '@/component/ui/logo'
-import { Button } from '@/component/ui/button'
-import { Input } from '@/component/ui/input'
+import { Logo } from '@/components/ui/logo'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { emailLogin, googleSignIn } from "@/lib/auth-client";
 import { useState } from "react";
@@ -16,7 +16,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "@/component/ui/form";
+} from "@/components/ui/form";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),

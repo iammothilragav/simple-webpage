@@ -1,8 +1,8 @@
 "use client";
 
-import { Logo } from "@/component/ui/logo";
-import { Button } from "@/component/ui/button";
-import { Input } from "@/component/ui/input";
+import { Logo } from "@/components/ui/logo";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -14,7 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/component/ui/form";
+} from "@/components/ui/form";
 import { emailSignup, authClient,googleSignIn } from "@/lib/auth-client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

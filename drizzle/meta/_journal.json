@@ -15,6 +15,13 @@
       "when": 1770880038594,
       "tag": "0001_misty_tana_nile",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1771168971905,
+      "tag": "0002_quiet_red_shift",
+      "breakpoints": true
     }
   ]
 }

@@ -9,14 +9,14 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { z } from "zod";
-import { Button } from "@/component/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/component/ui/card";
+} from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -24,8 +24,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/component/ui/form";
-import { Input } from "@/component/ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 

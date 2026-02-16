@@ -2,18 +2,18 @@
 
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
-import { Logo } from '@/component/ui/logo'
+import { Logo } from '@/components/ui/logo'
 import { RotateCcwIcon } from 'lucide-react'
-import { Button } from '@/component/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/component/ui/card'
-import { InputOTP } from '@/component/ui/input-otp'
-import { Spinner } from '@/component/ui/spinner'
+} from '@/components/ui/card'
+import { InputOTP } from '@/components/ui/input-otp'
+import { Spinner } from '@/components/ui/spinner'
 import { authClient, useSession } from '@/lib/auth-client'
 import { cn } from '@/lib/utils'
 

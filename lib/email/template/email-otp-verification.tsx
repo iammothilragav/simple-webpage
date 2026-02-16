@@ -1,4 +1,4 @@
-import { Logo } from '@/component/ui/logo';
+import { Logo } from '@/components/ui/logo';
 import {
   Body,
   Container,
