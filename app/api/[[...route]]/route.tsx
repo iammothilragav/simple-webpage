@@ -1,6 +1,6 @@
 import { handle } from 'hono/vercel'
 
-import app from '@/server/app'
+import app from '@/server'
 
 export const OPTIONS = handle(app)
 export const GET = handle(app)

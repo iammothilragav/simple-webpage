@@ -24,7 +24,7 @@ import { EVENT_DEFAULTS } from '@/constants/calendar-constant';
 import { useShallow } from 'zustand/shallow';
 import { toast } from 'sonner';
 import { getLocaleFromCode } from '@/lib/event';
-import { client } from '@/lib/rpc';
+import { client } from '@/server/client';
 import { useRouter } from 'next/navigation';
 
 

@@ -1,5 +1,5 @@
 import { EventCalendar } from '@/app/(main)/event-calendar/event-calendar';
-import { client } from '@/lib/rpc';
+import { client } from '@/server/client';
 import { cookies } from 'next/headers';
 import { SearchParams } from 'nuqs';
 import { searchParamsCache } from '@/lib/searchParams';

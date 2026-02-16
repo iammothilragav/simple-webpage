@@ -21,7 +21,7 @@ import { EventDetailsForm } from './event-detail-form';
 import { toast } from 'sonner';
 import { useShallow } from 'zustand/shallow';
 import { getLocaleFromCode } from '@/lib/event';
-import { client } from '@/lib/rpc';
+import { client } from '@/server/client';
 import { useRouter } from 'next/navigation';
 
 const DEFAULT_START_TIME = '09:00';

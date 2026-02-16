@@ -6,7 +6,7 @@ import { EventCard } from '@/app/(main)/event-calendar/ui/events';
 import { Events, TimeFormatType } from '@/types/event';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { SearchEventFilter } from '@/lib/validations';
-import { client } from '@/lib/rpc';
+import { client } from '@/server/client';
 interface EventSearchDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
