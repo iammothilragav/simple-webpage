@@ -3,40 +3,40 @@ import { db } from '@/db';
 import { events } from '@/db/schema';
 import { and, eq, ilike, or, SQL } from 'drizzle-orm';
 import { searchEventFilterSchema } from '@/lib/validations';
-import { Honovariable } from '../middleware';
+import { HonoVariable } from '../middleware';
 
+// In your validations file
 const EventSchema = z.object({
-  id: z.string().openapi({ example: '1' }),
-  title: z.string().openapi({ example: 'Event Title' }),
-  description: z.string().openapi({ example: 'Event Description' }),
-  startDate: z.string().openapi({ example: '2022-01-01' }),
-  endDate: z.string().openapi({ example: '2022-01-01' }),
-  startTime: z.string().openapi({ example: '10:00' }),
-  endTime: z.string().openapi({ example: '11:00' }),
-  category: z.string().openapi({ example: 'Work' }),
-  color: z.string().openapi({ example: 'blue' }),
-  location: z.string().openapi({ example: 'Work' }),
-  isRepeating: z.boolean().openapi({ example: false }),
-  repeatingType: z.enum(['daily', 'weekly', 'monthly']).nullable().openapi({ example: 'daily' }),
-  userId: z.string().openapi({ example: '1' }),
-  createdAt: z.string().openapi({ example: '2022-01-01' }),
-  updatedAt: z.string().openapi({ example: '2022-01-01' }),
+  id: z.string(),
+  title: z.string(),
+  description: z.string().nullable(),
+  startDate: z.string(), // ISO string
+  endDate: z.string(),   // ISO string
+  startTime: z.string(),
+  endTime: z.string(),
+  category: z.string(),
+  color: z.string(),
+  location: z.string().nullable(),
+  isRepeating: z.boolean(),
+  repeatingType: z.string().nullable(),
+  userId: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
 });
 
-const SearchResponseSchema = z.object({
+export const SearchResponseSchema = z.object({
   success: z.boolean(),
   events: z.array(EventSchema),
   totalCount: z.number(),
   hasMore: z.boolean(),
-  error: z.string().optional()
+  error: z.string().optional(),
 });
 
-const search = new OpenAPIHono<Honovariable>();
-
-search.openapi(
+const search = new OpenAPIHono<HonoVariable>()
+  .openapi(
   createRoute({
     method: 'get',
-    path: '/search',
+    path: '/',
     tags: ['search'],
     summary: 'Search events',
     description: 'Search events',

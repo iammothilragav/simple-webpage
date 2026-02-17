@@ -1,6 +1,8 @@
-import { hc } from 'hono/client';
-import type { AppType } from '@/server';
+import { hc } from 'hono/client'
 
-export const client = hc<AppType>(process.env.NEXT_PUBLIC_APP_URL!);
+import { env } from '@/lib/env'
+import type { AppType } from '@/server'
 
-export type ClientType = typeof client;
+export const client = hc<AppType>(env.NEXT_PUBLIC_APP_URL)
+
+export type ClientType = typeof client

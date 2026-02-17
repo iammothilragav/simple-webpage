@@ -74,7 +74,7 @@ export default function EventCreateDialog() {
     setIsSubmitting(true);
 
     const createEventPromise = async () => {
-      const response = await client.api.events.$post({
+      const response = await (client.api.events as any).$post({
         json: formValues,
       });
 

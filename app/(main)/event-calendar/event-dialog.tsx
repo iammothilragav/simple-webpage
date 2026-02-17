@@ -110,7 +110,7 @@ export default function EventDialog() {
     if (!selectedEvent?.id) return;
 
     const updateEventPromise = async () => {
-      const response = await client.api.events[':id'].$patch({
+      const response = await (client.api.events[':id'] as any).$patch({
         param: { id: selectedEvent.id },
         json: values,
       });
@@ -118,8 +118,8 @@ export default function EventDialog() {
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
-          'error' in errorData
-            ? (errorData.error as string)
+          'error' in (errorData as any)
+            ? ((errorData as any).error as string)
             : 'Failed to update event'
         );
       }
@@ -148,15 +148,15 @@ export default function EventDialog() {
     setIsDeleteAlertOpen(false);
 
     const deleteEventPromise = async () => {
-      const response = await client.api.events[':id'].$delete({
+      const response = await (client.api.events[':id'] as any).$delete({
         param: { id: selectedEvent.id },
       });
 
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
-          'error' in errorData
-            ? (errorData.error as string)
+          'error' in (errorData as any)
+            ? ((errorData as any).error as string)
             : 'Failed to delete event'
         );
       }

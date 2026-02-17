@@ -31,7 +31,7 @@ export const EventPreviewCalendar = ({
 }: EventPreviewCalendarProps) => {
   // Simulate a week with an event on the 15th
   const weekDays = Array.from({ length: 7 }).map((_, i) =>
-    format(new Date(2023, 0, i + 1), 'EEE', { locale }),
+    format(new Date(2023, 0, i + 2), 'EEE', { locale }),
   );
 
   const calendarDays = Array.from({ length: 35 }).map((_, i) => ({

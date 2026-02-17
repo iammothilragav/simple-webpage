@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
-
+import { env } from '@/lib/env'
 import { render } from '@react-email/components'
-import nodemailer, { TransportOptions } from 'nodemailer'
+import type { Transporter, SentMessageInfo, TransportOptions } from 'nodemailer'
 
 
 import EmailOTPVerificationTemplate from './template/email-otp-verification'
@@ -95,25 +95,26 @@ const getEmailTemplate = async <T extends EmailTemplate>(
 }
 
 const getSmtpConfig = () => {
-  const port = parseInt(process.env.SMTP_PORT || '587', 10)
+  const port = parseInt(env.SMTP_PORT || '587', 10)
   return {
-    host: process.env.SMTP_HOST,
+    host: env.SMTP_HOST,
     port: port,
     secure: port === 465,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: env.EMAIL_USER,
+      pass: env.EMAIL_PASS,
     },
   }
 
 }
 
 // Lazy transporter initialization with connection pooling
-let transporter: nodemailer.Transporter | null = null
+let transporter: Transporter | null = null
 let transporterReady: Promise<void> | null = null
 
 const getTransporter = async () => {
   if (!transporter) {
+    const nodemailer = (await import('nodemailer')).default
     const smtpConfig = getSmtpConfig()
     transporter = nodemailer.createTransport(smtpConfig as TransportOptions)
 
@@ -168,7 +169,7 @@ const processEmailQueue = async () => {
       new Promise<never>((_, reject) =>
         setTimeout(() => reject(new Error('Email send timeout')), 15000)
       ),
-    ])) as nodemailer.SentMessageInfo
+    ])) as SentMessageInfo
 
     const duration = Date.now() - startTime
     console.log(`Email sent successfully in ${duration}ms:`, info.messageId)
@@ -194,7 +195,7 @@ const processEmailQueue = async () => {
     // Continue processing if there are more emails (including retries)
     if (emailQueue.length > 0) {
       // Immediately process next email instead of waiting
-      setImmediate(() => processEmailQueue())
+      setTimeout(() => processEmailQueue(), 0)
     }
   }
 }

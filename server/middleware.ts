@@ -1,14 +1,14 @@
 import { Context, Hono, Next } from 'hono';
 import { auth } from '@/lib/auth';
 
-export type Honovariable = {
+export type HonoVariable = {
   Variables: {
     user: typeof auth.$Infer.Session.user
     session: typeof auth.$Infer.Session.session
   }
 }
 
-export const authMiddleware = async (c:Context<Honovariable>, next:Next) => {
+export const authMiddleware = async (c:Context<HonoVariable>, next:Next) => {
   const session = await auth.api.getSession({
     headers: c.req.raw.headers,
   });

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Loader2, Search } from 'lucide-react';
@@ -64,16 +66,13 @@ export const EventSearchDialog = ({
             colors: options?.colors ?? [],
             locations: options?.locations ?? [],
             repeatingTypes: options?.repeatingTypes ?? [],
-            limit: '20',
-            offset: '0',
+            limit: 20,
+            offset: 0,
             isRepeating: options?.isRepeating,
           };
 
           const response = await client.api.search.$get({
-            query: {
-              ...queryParams,
-              categories: queryParams.categories,
-            }
+            query: queryParams
           });
 
           if (abortControllerRef.current?.signal.aborted) {
@@ -154,8 +153,8 @@ export const EventSearchDialog = ({
 
       const query = {
         search: searchQuery.trim(),
-        limit: '20',
-        offset: String(searchResults.length),
+        limit: 20,
+        offset: searchResults.length,
       };
 
       const response = await client.api.search.$get({

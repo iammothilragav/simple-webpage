@@ -5,7 +5,7 @@ import { events } from '@/db/schema';
 import { and, between, eq, ilike, or, lte, gte, SQL } from 'drizzle-orm';
 import { createEventSchema, eventFilterSchema, CreateTaskSchema, EventFilter, UpdateTaskSchema } from '@/lib/validations';
 import { combineDateAndTime } from '@/lib/date';
-import { Honovariable } from '../middleware';
+import { HonoVariable } from '../middleware';
 import { getDateRange } from '../utils';
 
 // Schema for Event Response
@@ -39,12 +39,12 @@ const SingleEventResponseSchema = z.object({
     error: z.string().optional()
 });
 
-const eventRoutes = new OpenAPIHono<Honovariable>();
+const eventRoutes = new OpenAPIHono<HonoVariable>()
 
-eventRoutes.openapi(
+.openapi(
   createRoute({
     method: 'get',
-    path: '/events',
+    path: '/',
     tags: ['events'],
     summary: 'Get all events',
     description: 'Get all events',
@@ -68,7 +68,7 @@ eventRoutes.openapi(
       },
     },
   }),
-  async (c: Context<Honovariable>) => {
+  async (c: Context<HonoVariable>) => {
     try {
       const user = c.get('user');
       if (!user?.id) {
@@ -148,12 +148,12 @@ eventRoutes.openapi(
       return c.json({ success: false, error: 'Internal server error', events: [] }, 500);
     }
   }
-);
+)
 
-eventRoutes.openapi(
+.openapi(
   createRoute({
     method: 'post',
-    path: '/events',
+    path: '/',
     tags: ['events'],
     summary: 'Create a new event',
     description: 'Create a new event',
@@ -183,7 +183,7 @@ eventRoutes.openapi(
       },
     },
   }),
-  async (c: Context<Honovariable>) => {
+  async (c: Context<HonoVariable>) => {
     try {
         const user = c.get('user');
         if (!user?.id) {
@@ -225,12 +225,12 @@ eventRoutes.openapi(
         );
     }
   }
-);
+)
 
-eventRoutes.openapi(
+.openapi(
   createRoute({
     method: 'patch',
-    path: '/events/:id',
+    path: '/:id',
     tags: ['events'],
     summary: 'Update an event',
     description: 'Update an event',
@@ -266,7 +266,7 @@ eventRoutes.openapi(
       },
     },
   }),
-  async (c: Context<Honovariable>) => {
+  async (c: Context<HonoVariable>) => {
     const id = c.req.param('id');
     const data = c.req.valid('json' as never) as UpdateTaskSchema;
     try {
@@ -309,12 +309,12 @@ eventRoutes.openapi(
       );
     }
   }
-);
+)
 
-eventRoutes.openapi(
+.openapi(
   createRoute({
     method: 'delete',
-    path: '/events/:id',
+    path: '/:id',
     tags: ['events'],
     summary: 'Delete an event',
     description: 'Delete an event',
@@ -343,7 +343,7 @@ eventRoutes.openapi(
       },
     },
   }),
-  async (c: Context<Honovariable>) => {
+  async (c: Context<HonoVariable>) => {
     const id = c.req.param('id');
     try {
       const [deletedEvent] = await db

@@ -58,7 +58,7 @@ const transition = {
   type: 'tween',
   ease: 'easeOut',
   duration: 0.15,
-};
+} as const;
 
 const getHoverAnimationProps = (hoveredRect: DOMRect, navRect: DOMRect) => ({
   x: hoveredRect.left - navRect.left - 10,

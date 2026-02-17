@@ -3,7 +3,7 @@ import { Context } from 'hono';
 import { db } from '@/db';
 import { events } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { Honovariable } from '../middleware';
+import { HonoVariable } from '../middleware';
 
 const CategoriesResponseSchema = z.object({
   success: z.boolean(),
@@ -11,12 +11,12 @@ const CategoriesResponseSchema = z.object({
   error: z.string().optional()
 });
 
-const categories = new OpenAPIHono<Honovariable>();
+const categories = new OpenAPIHono<HonoVariable>()
 
-categories.openapi(
+.openapi(
   createRoute({
     method: 'get',
-    path: '/categories',
+    path: '/',
     tags: ['categories'],
     summary: 'Get all categories',
     description: 'Get all categories',
@@ -37,7 +37,7 @@ categories.openapi(
       },
     },
   }),
-  async (c: Context<Honovariable>) => {
+  async (c: Context<HonoVariable>) => {
     try {
       const user = c.get('user');
       if (!user?.id) {

@@ -31,7 +31,7 @@ export default async function DemoPage(props: DemoPageProps) {
     repeatingTypes: search.repeatingTypes,
   };
 
-  const response = await client.api.events.$get(
+  const response = await (client.api.events as any).$get(
     { query },
     {
       headers: {
